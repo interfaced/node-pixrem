@@ -138,24 +138,6 @@ describe('pixrem', function () {
     assert.equal(processed, css);
   });
 
-  it('should not convert rem in unsupported feature (value)', function () {
-    var css = '.rule { width: calc(100% - 2rem); background: linear-gradient(red 2rem, blue) }';
-    var processed = postcss([pixrem]).process(css).css;
-    assert.equal(processed, css);
-  });
-
-  it('should not convert rem in unsupported feature (property)', function () {
-    var css = '.rule { transform: translate(2rem) }';
-    var processed = postcss([pixrem]).process(css).css;
-    assert.equal(processed, css);
-  });
-
-  it('should not convert rem in unsupported feature (with prefixes)', function () {
-    var css = '.rule { width: -webkit-calc(100% - 2rem); width: calc(100% - 2rem); -ms-transform: translate(2rem) }';
-    var processed = postcss([pixrem]).process(css).css;
-    assert.equal(processed, css);
-  });
-
   it('should use default root font-size as defined in CSS', function () {
     var css = 'html { font-size: 62.5% } .rule { font-size: 2rem; }';
     var expected = 'html { font-size: 62.5% } .rule { font-size: 20px; font-size: 2rem; }';
